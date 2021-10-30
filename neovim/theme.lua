@@ -1,12 +1,5 @@
+-- theme config
 
--- plugins
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.config/nvim/plugged')
-Plug 'morhetz/gruvbox'          -- theme
-Plug 'vim-airline/vim-airline'  -- airline
-vim.call('plug#end')
-
--- theme
 vim.cmd('colorscheme gruvbox')
 
 vim.cmd('set cursorline')
@@ -16,3 +9,6 @@ vim.cmd('syntax on')
 
 vim.cmd('set number')
 vim.cmd('set showmatch')
+
+vim.cmd('let g:airline#extensions#tabline#enabled = 1')
+

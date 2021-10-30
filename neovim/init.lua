@@ -1,6 +1,3 @@
-require 'lsp'
-require 'theme'
-
 -- plugins
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
@@ -8,7 +5,32 @@ Plug 'vim-latex/vim-latex'      -- tex support
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+-- theme
+Plug 'morhetz/gruvbox'          -- theme
+Plug 'vim-airline/vim-airline'  -- airline
+
+-- LSP
+Plug 'neovim/nvim-lspconfig'    -- LSP config
+Plug 'hrsh7th/cmp-nvim-lsp'	    -- autocomplete
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'        -- vsnip
+Plug 'hrsh7th/vim-vsnip'
+
+
 vim.call('plug#end')
+
+-- modules
+require 'theme'
+require 'lsp'
+
+
+-- shortcuts
+vim.cmd('map <Tab> :bn<CR>')
+vim.cmd('map <S-Tab> :bp<CR>')
 
 -- encodings
 vim.cmd('set enc=utf-8')
