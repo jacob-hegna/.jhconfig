@@ -5,6 +5,7 @@ Plug 'vim-latex/vim-latex'      -- tex support
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'cstrahan/vim-capnp'
 
 -- theme
 Plug 'morhetz/gruvbox'          -- theme
@@ -27,6 +28,8 @@ vim.call('plug#end')
 require 'theme'
 require 'lsp'
 
+-- fzf searching
+vim.api.nvim_set_keymap('n', 'f', '<cmd>Files<CR>', {noremap=true})
 
 -- shortcuts
 vim.cmd('map <Tab> :bn<CR>')
@@ -43,3 +46,6 @@ vim.cmd('set smartindent')
 vim.cmd('set tabstop=2')
 vim.cmd('set shiftwidth=2')
 vim.cmd('set expandtab')
+
+-- latex
+vim.cmd('autocmd BufWritePost,FileWritePost *.tex !latexmk -pdf %')

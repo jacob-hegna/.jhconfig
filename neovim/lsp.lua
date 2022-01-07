@@ -1,7 +1,7 @@
 -- LSP and autocomplete config
 
 --------------
--- kevbinds --
+-- keybinds --
 --------------
 
 vim.cmd('set completeopt=menu,menuone,noselect')
@@ -42,11 +42,17 @@ local on_attach = function(client, bufnr)
 
 end
 
+----------------
+-- formatting --
+----------------
+
+vim.cmd('autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.cc lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 1000)')
+
 ------------------
 -- autocomplete --
 ------------------
-
-require('lspconfig').clangd.setup{}
 
 local cmp = require('cmp')
 cmp.setup({
@@ -96,8 +102,15 @@ cmp.setup.cmdline(':', {
 })
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['clangd'].setup {
+
+require('lspconfig').clangd.setup{
+  cmd = {
+    "/Users/jacob/code/llvm-project/bin3/bin/clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu"
+  },
   on_attach = on_attach,
   capabilities = capabilities,
-  debounce_text_changes = 150,
+  debounce_test_changes = 150,
 }
