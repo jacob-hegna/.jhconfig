@@ -49,6 +49,7 @@ end
 vim.cmd('autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 1000)')
 vim.cmd('autocmd BufWritePre *.cc lua vim.lsp.buf.formatting_sync(nil, 1000)')
 vim.cmd('autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)')
 
 ------------------
 -- autocomplete --
@@ -104,13 +105,17 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require('lspconfig').clangd.setup{
-  cmd = {
-    "/Users/jacob/code/llvm-project/bin3/bin/clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--header-insertion=iwyu"
-  },
   on_attach = on_attach,
   capabilities = capabilities,
   debounce_test_changes = 150,
 }
+require('lspconfig').pyright.setup{}
+
+null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort
+    },
+})
+

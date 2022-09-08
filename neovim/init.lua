@@ -1,6 +1,9 @@
 -- plugins
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
+
+Plug 'nvim-lua/plenary.nvim'    -- nvim utilities
+
 Plug 'vim-latex/vim-latex'      -- tex support
 
 Plug 'junegunn/fzf'
@@ -21,6 +24,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'        -- vsnip
 Plug 'hrsh7th/vim-vsnip'
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 vim.call('plug#end')
 
@@ -46,6 +50,7 @@ vim.cmd('set smartindent')
 vim.cmd('set tabstop=2')
 vim.cmd('set shiftwidth=2')
 vim.cmd('set expandtab')
+
 
 -- latex
 vim.cmd('autocmd BufWritePost,FileWritePost *.tex !latexmk -pdf %')
